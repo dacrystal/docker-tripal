@@ -1,0 +1,24 @@
+# This is a sample configuration to run a Drupal-instance with Docker-Compose.
+# For customization options see: https://docs.docker.com/compose/yml/
+
+version: '2'
+services:
+  web:
+    build: .
+    links:
+      - db:postgres
+    volumes:
+      - /var/www/html/sites
+      - /var/www/private
+    environment:
+      - UPLOAD_LIMIT=20M
+      - MEMORY_LIMIT=128M
+    ports:
+      - "3000:80"
+  
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - /var/lib/postgresql/data

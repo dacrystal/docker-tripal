@@ -1,0 +1,42 @@
+#==== Tripal configuration  ====================================================
+cd /var/www/html/
+drush pm-enable ctools views views_ui libraries services
+drush pm-enable rest_server
+drush pm-enable tripal_core
+
+#==== Install Chado  ==========================================================
+# CHADO_INSTALL_OPTION="Install Chado v1.3"
+drush eval "module_load_include('inc', 'tripal_core', 'tripal_core.chado_install'); tripal_core_install_chado('${CHADO_INSTALL_OPTION}');"
+
+
+#==== Install Modules  ==========================================================
+if [ ! -z "$TRIPAL_DOWNLOAD_MODULES" ]; then
+    drush pm-download ${TRIPAL_DOWNLOAD_MODULES}
+fi
+if [ ! -z "$TRIPAL_GIT_CLONE_MODULES" ]; then
+    cd /var/www/html/sites/all/modules/
+    for repo in $TRIPAL_GIT_CLONE_MODULES; do
+        git clone $repo
+    done
+    cd /var/www/html/
+fi
+drush pm-enable tripal_views tripal_db tripal_cv tripal_organism tripal_analysis tripal_feature ${TRIPAL_ENABLE_MODULES}
+chgrp -R www-data /var/www/html/sites/default/files
+chmod -R g+rw /var/www/html/sites/default/files
+
+
+# Ensure permissions are available
+drush role-add-perm 'anonymous user' 'access chado_analysis content'
+drush role-add-perm 'anonymous user' 'access chado_feature content'
+drush role-add-perm 'anonymous user' 'access chado_organism content'
+drush role-add-perm 'authenticated user' 'access chado_analysis content'
+drush role-add-perm 'authenticated user' 'access chado_feature content'
+drush role-add-perm 'authenticated user' 'access chado_organism content'
+
+# Launch jobs automatically created
+drush trp-run-jobs --username=admin
+
+# And launch them regularly
+echo "*/2 * * * * (bash -lc 'cd /var/www/html; drush trp-run-jobs --username=admin') >> /var/log/tripal_jobs.log 2>&1" > tripal_cron && crontab tripal_cron && rm tripal_cron
+service cron start
+
