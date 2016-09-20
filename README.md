@@ -1,8 +1,6 @@
 # Tripal Docker Image
 
-![Tripal Logo](http://tripal.info/sites/default/files/TripalLogo_dark.png)
-
-This image contains Tripal 2.1 & Chado 1.3 that based [docker-drupal](https://github.com/samos123/docker-drupal/blob/master/README.md).
+This image contains Tripal 2.1 & Chado 1.3. The image is based on [docker-drupal](https://github.com/samos123/docker-drupal/blob/master/README.md).
 It will automatically setup the database and install a default site.
 
 The image doesn't contain a database so you have to create a seperate database
@@ -57,12 +55,12 @@ any modifications with:
 
     docker-compose pull && docker-compose up -d
 
-## Tripal options
-:
-    - `TRIPAL_DOWNLOAD_MODULES`: e.g `"tripal_analysis_blast-7.x-2.x-dev"`
-    - `TRIPAL_GIT_CLONE_MODULES`: e.g `"https://github.com/tripal/tripal_analysis_expression.git"`
-    - `TRIPAL_ENABLE_MODULES` :
-        - default: `"tripal_genetic tripal_natural_diversity tripal_phenotype tripal_project tripal_pub tripal_stock"`
+
+## Tripal options:
+
+  - `TRIPAL_DOWNLOAD_MODULES`: additional drupal modules; e.g "tripal_analysis_blast-7.x-2.x-dev"
+  - `TRIPAL_GIT_CLONE_MODULES`: additional drupal modules from a git repo; e.g "https://github.com/tripal/tripal_analysis_expression.git"
+  - `TRIPAL_ENABLE_MODULES` : default to "tripal_genetic tripal_natural_diversity tripal_phenotype tripal_project tripal_pub tripal_stock"
 
 
 ## Database options(`samos123/docker-drupal`)
@@ -78,6 +76,7 @@ container:
   - `DB_NAME`
   - `DB_USER`
   - `DB_PASS`
+
 
 ## Other options(`samos123/docker-drupal`)
 
@@ -117,7 +116,9 @@ Registry url: [https://registry.hub.docker.com/u/dacrystal/tripal/](https://regi
 
 
 # TODO #
-[] Provide a postgres database if no db-link provided
-[] Check if it can run with Mysql...  
+
+- [ ] Include postgres server in the image
+- [ ] Only postgres should be allowed (required for installation of the 
+Chado Schema)
 
 
