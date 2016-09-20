@@ -1,4 +1,5 @@
 FROM samos123/drupal
+MAINTAINER Nasser Alansari <alansari.n@nyu.edu>
 
 # Install packages
 RUN apt-get -q update && \
