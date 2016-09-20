@@ -120,5 +120,6 @@ Registry url: [https://registry.hub.docker.com/u/dacrystal/tripal/](https://regi
 - [ ] Include postgres server in the image
 - [ ] Only postgres should be allowed (required for installation of the 
 Chado Schema)
+- [ ] Add docker-compose version 2 compatibility (e.g env naming on linking)
 
 
