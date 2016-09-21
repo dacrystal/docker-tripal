@@ -124,8 +124,8 @@ See the [samos123/docker-drupal Customization](https://github.com/samos123/docke
 - [ ] Only postgres should be allowed (required for installation of the 
 Chado Schema)
 - [ ] Add docker-compose version 2 compatibility (e.g env naming on linking)
-- [x] Add ssh server (root:changeme)
-- [x] Use tripal `install_chado` method to install chado schema
-- [x] Steal the good parts from [erasche/docker-tripal](https://github.com/erasche/docker-tripal)
+- [x] ~~Add ssh server (root:changeme)~~
+- [x] ~~Use tripal `install_chado` method to install chado schema~~
+- [x] ~~Steal the good parts from [erasche/docker-tripal](https://github.com/erasche/docker-tripal)~~
 
 
