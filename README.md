@@ -15,7 +15,7 @@ container (which is no effort if you use the provided configuration for
 version: '2'
 services:
   web:
-    build: .
+    image: dacrystal/docker-tripal
     links:
       - db:postgres
     volumes:
@@ -108,9 +108,9 @@ See the [samos123/docker-drupal Customization](https://github.com/samos123/docke
 
 ## Links
 
-- Source code: [https://github.com/dacrustal/docker-tripal](https://github.com/dacrystal/docker-tripal)
+- Source code: [https://github.com/dacrystal/docker-tripal](https://github.com/dacrystal/docker-tripal)
 
-- Registry url: [https://registry.hub.docker.com/u/dacrystal/tripal/](https://registry.hub.docker.com/u/dacrystal/tripal/)
+- Docker Hub: [https://hub.docker.com/r/dacrystal/tripal/](https://hub.docker.com/r/dacrystal/tripal/)
 
 
 - **samos123/docker-drupal** : See the [samos123/docker-drupal Credits](https://github.com/samos123/docker-drupal/blob/master/README.md#Credits)
