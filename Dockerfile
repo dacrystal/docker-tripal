@@ -45,3 +45,18 @@ ENV TRIPAL_ENABLE_MODULES="tripal_genetic tripal_natural_diversity tripal_phenot
 # Add PHP-settings
 ADD php-conf.d/ $PHP_INI_DIR/conf.d/
 
+
+# SSH
+RUN apt-get install -y openssh-server
+RUN mkdir /var/run/sshd
+RUN echo 'root:changeme' | chpasswd
+RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
+
+EXPOSE 22
+
+
+
