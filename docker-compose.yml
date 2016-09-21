@@ -2,7 +2,8 @@
 # For customization options see: https://docs.docker.com/compose/yml/
 
 web:
-  build: .
+  #build: .
+  image: dacrystal/tripal
   links:
     - db:postgres
   volumes:
