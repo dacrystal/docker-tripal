@@ -15,7 +15,7 @@ container (which is no effort if you use the provided configuration for
 version: '2'
 services:
   web:
-    image: dacrystal/docker-tripal
+    image: dacrystal/tripal
     links:
       - db:postgres
     volumes:
